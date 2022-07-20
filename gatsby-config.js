@@ -1,13 +1,21 @@
 module.exports = {
-  siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
-  },
   plugins: [
+    {
+      resolve: `gatsby-source-cosmicjs`,
+      options: {
+        bucketSlug: `krc-heating-production`, // Get this value in Bucket > Settings
+        objectTypes: [`index`],
+        // If you have enabled read_key to fetch data (optional).
+        apiAccess: {
+          read_key: `13FJz8qQxP2jUSt7Qyu9TxVCMQLTa6P7XjOkB8hFNlZkjtWEZA`, // Get this value in Bucket > Settings
+        },
+        localMedia: true, // Download media locally for gatsby image (optional)
+        limit: 1000, // The number of Objects to fetch on each request (optional)
+      }
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    'gatsby-plugin-postcss',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
